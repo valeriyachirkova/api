@@ -1,0 +1,94 @@
+body {
+    font: 12px serif;
+    background-color: #fff7ee;
+}
+
+#wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
+}
+
+footer {
+    padding-bottom: 4%;
+}
+
+/* text */
+h1 {
+    font-size: 38px;
+    font-family: 'LuloCleanW01-OneBold';
+    text-align: center;
+    color: #fc8f41;
+    padding-top: 3%;
+}
+
+h2 {
+    text-align: center;
+    font-size: 14px;
+    font-family: 'LuloCleanW01-One';
+}
+
+p {
+    text-align: center;
+    font-size: 14px;
+    font-family: 'LuloCleanW01-One';
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+#luft {
+      font-family: 'LuloCleanW01-OneBold';
+    font-size: 20px;
+    padding: 1%;
+    padding-top: 3%;
+}
+
+#dato {
+    font-family: 'LuloCleanW01-OneBold';
+    font-size: 20px;
+}
+
+/* images */
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+.column {
+    flex: 15%;
+    max-width: 25%;
+    padding: 1%;
+}
+
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+#result {
+    text-align: center;
+}
+
+.weatherInfo {
+    font-family: 'LuloCleanW01-OneBold';
+    font-size: 20px;
+    color: #6f1b07;
+}
+
+#name {
+    font-family: 'LuloCleanW01-OneBold';
+    font-size: 25px;
+    color: #fc8f41;
+}

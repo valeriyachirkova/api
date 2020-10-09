@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Fotodage i Aarhus</title>
+    <meta name="author" content="Your name">
+    <meta name="description" content="Example description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <link href="//db.onlinewebfonts.com/c/39a2c7f346d5cfae7045aeb2fb50d9ad?family=LuloCleanW01-OneBold" rel="stylesheet" type="text/css" />
+    <link href="//db.onlinewebfonts.com/c/116d187134420de5733c7c45bbc80c46?family=LuloCleanW01-One" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header>
+    <h1> KOM TIL FOTODAGE I SKOVEN</h1>
+    </header>
+    
+    <main id="content">
+
+        <section>
+            
+            <h2> <br> - Kom og få taget billeder af dine børn i skoven og få en uforglemmelig oplevelse! </h2>
+
+            <div class="row">
+                <div class="column"> <img src="/images/sofia1.png" alt="sofia1"> </div>
+                <div class="column"> <img src="/images/sofia2.png" alt="sofia2"> </div>
+                <div class="column"> <img src="/images/sofia4.png" alt="sofia4"> </div>
+                <div class="column"> <img src="/images/sofia5.png" alt="sofia5"> </div>
+                <div class="column"> <img src="/images/sofia3.png" alt="sofia3"> </div>
+
+            </div>
+        </section>
+
+    
+       
+        <section>
+             <p id="dato">Dato: 17. og 18. oktober 2020 </p>
+             <p><br> Selve arrangementet koster 250 kr. og det er selvfølgelig helt frivilligt <br> om du ønsker at bestille nogle billeder eller slet ingen efterfølgende. </p><br>
+         
+               <div id="result"></div>
+   
+                 
+           
+
+            <div class="row">
+                <div class="column"> <img src="/images/nina1.png" alt="nina1"> </div>
+                <div class="column"> <img src="/images/nina2.png" alt="nina2"> </div>
+                <div class="column"> <img src="/images/nina3.png" alt="nina3"> </div>
+                <div class="column"> <img src="/images/nina4.png" alt="nina4"> </div>
+                <div class="column"> <img src="/images/nina5.png" alt="nina5"> </div>
+            </div>
+           
+              <p id="luft"> Adresse:</p><p>Tumlepladsen, Riis Skov - Dronning Margrethes Vej 107, 8200 Aarhus N</p><br>    
+              <div id="map"></div>
+        </section>
+    </main>
+    
+    <footer>
+    </footer>
+    
+    <!--- script --->
+     
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoidmFsZXJpeWFjaGlya292YSIsImEiOiJja2Zxa2gxNXgwc2NuMnhwZnN6d2Q4dW8yIn0.A4_GITwBPZSTG9f9NOCrvQ';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/valeriyachirkova/ckfqlnpjc0b7y19nrmn1uhd7q',
+            center: [10.222, 56.177],
+            zoom: 15,
+        });
+
+        const token = "8a8e7dbf8bc16822146494f5d13b86ef"; // token
+
+        const aarhus = "http://api.openweathermap.org/data/2.5/weather?q=Aarhus&lang=da&units=metric&appid,DK&appid=8a8e7dbf8bc16822146494f5d13b86ef";
+
+
+        $(document).ready(function() {
+            
+            // get the weather data via query URI
+        fetch(aarhus).then(response => {
+            return response.json();
+        }).then(data => {
+
+            // Work with JSON data here
+            console.log(data); // show what's in the json
+
+            // solnedgang
+            var sunsetMs = data.sys.sunset * 1000; // dato-objektet har brug for millisek. Derfor * 1000
+            var sunset = new Date(sunsetMs);
+
+            // Datoformattering @URI < https://www.w3schools.com/js/js_date_methods.asp >
+            var sunsetTime = sunset.getHours() + ":" + sunset.getMinutes();
+
+            /*
+            --> Prøv selv: 
+            --> Tilføj oplysninger om solopgang.
+            */
+
+            // append = da. tilføj (noget tilføjes et element med id="result"
+            $('#result').append(
+
+                
+                // tilføjer ("append") en div til vejroplysninger
+                '<div class="weatherInfo">' +
+
+             'Vejret i ' +
+                
+                // tilføjer bynavn
+                '<p id="name"> ' + data.name + ' <p>' +
+
+                // tilføjer en beskrivelse af vejret lige nu
+                '<h2>Vejr: ' + data.weather[0].description + '</h2>' +
+
+                // tilføjer vejrsymbol
+            '<figure>' +
+            '<img src="images/' + data.weather[0].icon + '.png" alt="Vejrsymbol">' +
+            '</figure>' +
+
+            // tilføjer klokkeslet for solens nedgang i vest
+            '<p> Solnedgang: ' + sunsetTime + '</p>' +
+
+            // afslutter #weatherInfo taggen
+            '</div>'); // .append til #result slut
+
+        // here are the icons: https://openweathermap.org/weather-conditions 
+
+    }).catch(err => {
+        // Do something for an error here
+        console.log('There was an error ...');
+    });
+        }); // document ready end
+    </script>
+
+
+</body></html>
